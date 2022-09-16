@@ -1,6 +1,6 @@
 import gulp from 'gulp';
-import { isDefined } from '@opi-pib/ts-utility';
-import { Notify } from '@opi-pib/node-utility';
+import { isDefined } from '@opi_pib/ts-utility';
+import { Notify } from '@opi_pib/node-utility';
 
 import { Loader } from '../loader/loader';
 import { Config } from '../../config/models/config';
