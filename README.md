@@ -1,4 +1,4 @@
-# @opi-pib/node-emails
+# @opi_pib/node-emails
 
 ## File structure
 

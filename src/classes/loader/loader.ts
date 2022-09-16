@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs-extra';
-import { Notify } from '@opi-pib/node-utility';
-import { Maybe, isDefined } from '@opi-pib/ts-utility';
+import { Notify } from '@opi_pib/node-utility';
+import { Maybe, isDefined } from '@opi_pib/ts-utility';
 import R from 'ramda';
 
 import { Config } from '../../config/models/config';
