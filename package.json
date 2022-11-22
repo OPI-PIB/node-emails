@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/node-emails",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Node email templates bundler",
 	"main": "dist/cli.js",
 	"types": "dist/cli.d.ts",
@@ -29,8 +29,8 @@
 	"author": "Dawid Lubowiecki",
 	"license": "MIT",
 	"dependencies": {
-		"@opi_pib/node-utility": "^1.0.3",
-		"@opi_pib/ts-utility": "^1.0.3",
+		"@opi_pib/node-utility": "^1.0.4",
+		"@opi_pib/ts-utility": "^1.0.4",
 		"browser-sync": "^2.27.10",
 		"fs-extra": "^10.1.0",
 		"gulp": "^4.0.2",
@@ -53,7 +53,7 @@
 		"yargs": "^17.6.2"
 	},
 	"devDependencies": {
-		"@opi_pib/eslint-config-base": "^1.0.3",
+		"@opi_pib/eslint-config-base": "^1.0.4",
 		"@types/browser-sync": "^2.26.3",
 		"@types/fs-extra": "^9.0.13",
 		"@types/gulp": "^4.0.10",
@@ -63,7 +63,7 @@
 		"@types/rimraf": "^3.0.2",
 		"@types/yargs": "^17.0.13",
 		"@typescript-eslint/eslint-plugin": "^5.43.0",
-		"eslint": "^8.27.0",
+		"eslint": "^8.28.0",
 		"eslint-plugin-import": "^2.26.0",
 		"husky": "^8.0.2",
 		"lint-staged": "^13.0.3",
