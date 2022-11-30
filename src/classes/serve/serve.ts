@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import { isDefined } from '@opi_pib/ts-utility';
+import { Is } from '@opi_pib/ts-utility';
 import { Notify } from '@opi_pib/node-utility';
 
 import { Loader } from '../loader/loader';
@@ -13,7 +13,7 @@ export class Serve {
 		core.setTasks();
 
 		gulp.series(['default'])((error?: any) => {
-			if (isDefined(error)) {
+			if (Is.defined(error)) {
 				Notify.error({ error });
 			} else {
 				Notify.success({ message: 'Done' });

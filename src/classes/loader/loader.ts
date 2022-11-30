@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs-extra';
 import { Notify } from '@opi_pib/node-utility';
-import { Maybe, isDefined } from '@opi_pib/ts-utility';
+import { Maybe, Is } from '@opi_pib/ts-utility';
 import R from 'ramda';
 
 import { Config } from '../../config/models/config';
@@ -10,7 +10,7 @@ export class Loader {
 	static loadConfig(configPath?: string): Config {
 		let config = defaultConfig;
 
-		if (isDefined(configPath)) {
+		if (Is.defined(configPath)) {
 			const customConfig: Config = Loader.load(configPath);
 
 			config = R.mergeDeepRight(defaultConfig, customConfig) as Config;
