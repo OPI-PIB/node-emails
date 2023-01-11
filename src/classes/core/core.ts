@@ -86,7 +86,6 @@ export class Core {
 	images() {
 		return gulp
 			.src(this.config.images)
-			.pipe(this.$.libsquoosh())
 			.pipe(gulp.dest(`${this.config.dist}/assets/img`));
 	}
 

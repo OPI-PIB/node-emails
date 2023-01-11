@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/node-emails",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Node email templates bundler",
 	"main": "dist/cli.js",
 	"types": "dist/cli.d.ts",
@@ -37,7 +37,6 @@
 		"gulp-htmlmin": "^5.0.1",
 		"gulp-if": "^3.0.0",
 		"gulp-inline-css": "^4.0.0",
-		"gulp-libsquoosh": "^1.1.2",
 		"gulp-load-plugins": "^2.0.8",
 		"gulp-replace": "^1.1.4",
 		"gulp-sass": "^5.1.0",
