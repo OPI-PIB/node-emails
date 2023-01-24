@@ -1,5 +1,16 @@
 # @opi_pib/node-emails
 
+-   [Install](#install)
+-   [File structure](#file-structure)
+-   [Cli commands](#cli-commands)
+-   [Default config](#default-config)
+
+## Install
+
+```
+npm install @opi_pib/node-emails
+```
+
 ## File structure
 
 Suggested file structure is placed in folder 'example'.
