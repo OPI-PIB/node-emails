@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/node-emails",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "Node email templates bundler",
 	"main": "dist/cli.js",
 	"types": "dist/cli.d.ts",
@@ -29,7 +29,7 @@
 	"author": "Dawid Lubowiecki",
 	"license": "MIT",
 	"dependencies": {
-		"@opi_pib/node-utility": "^1.1.4",
+		"@opi_pib/node-utility": "^1.1.5",
 		"@opi_pib/ts-utility": "^1.1.5",
 		"browser-sync": "^2.27.11",
 		"fs-extra": "^11.1.0",
@@ -58,7 +58,7 @@
 		"@types/gulp": "^4.0.10",
 		"@types/gulp-load-plugins": "0.0.33",
 		"@types/lazypipe": "0.0.31",
-		"@types/ramda": "^0.28.21",
+		"@types/ramda": "^0.28.22",
 		"@types/rimraf": "^3.0.2",
 		"@types/yargs": "^17.0.20",
 		"@typescript-eslint/eslint-plugin": "^5.49.0",
