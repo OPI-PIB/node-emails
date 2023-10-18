@@ -3,7 +3,7 @@
 		"browser": true,
 		"es2022": true
 	},
-	"extends": ["@opi_pib/base", "prettier"],
+	"extends": ["@opi_pib/base"],
 	"plugins": [],
 	"rules": {}
 }

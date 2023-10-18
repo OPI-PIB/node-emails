@@ -1,13 +1,13 @@
 {
 	"compilerOptions": {
-		"target": "ES2022",
+		"target": "ES5",
 		"module": "commonjs",
-		"declaration": true,
-		"outDir": "dist",
-		"strict": true,
+		"outDir": "./dist",
+		"rootDir": "./src",
 		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true
+		"forceConsistentCasingInFileNames": true,
+		"strict": true
 	},
-	"include": ["types/index.d.ts", "src/**/*"],
+	"include": ["types/index.d.ts", "./src/**/*"],
 	"exclude": ["node_modules", "**/*.spec.ts"]
 }
