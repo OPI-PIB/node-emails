@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/node-emails",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"description": "Node email templates bundler",
 	"main": "dist/cli.js",
 	"types": "dist/cli.d.ts",
