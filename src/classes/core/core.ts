@@ -3,7 +3,7 @@ import fs from 'fs';
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
 import browser from 'browser-sync';
-import rimraf from 'rimraf';
+import { rimrafSync } from 'rimraf';
 import panini from 'panini';
 import lazypipe from 'lazypipe';
 import inky from 'inky';
@@ -25,16 +25,24 @@ export class Core {
 	setTasks() {
 		gulp.task(
 			'build',
-			gulp.series(this.clean.bind(this), this.pages.bind(this), this.sass.bind(this), this.images.bind(this), this.inline.bind(this)),
+			gulp.series(
+				this.clean.bind(this),
+				this.pages.bind(this),
+				this.sass.bind(this),
+				this.images.bind(this),
+				this.inline.bind(this)
+			)
 		);
-		gulp.task('default', gulp.series('build', this.server.bind(this), this.watch.bind(this)));
+		gulp.task(
+			'default',
+			gulp.series('build', this.server.bind(this), this.watch.bind(this))
+		);
 	}
 
 	// Delete the "dist" folder
 	// This happens every time a build starts
-	// eslint-disable-next-line no-unused-vars
-	clean(done: (error: Error | null | undefined) => void) {
-		rimraf(this.config.dist, done);
+	clean() {
+		rimrafSync(this.config.dist);
 	}
 
 	// Compile layouts, pages, and partials into flat HTML files
@@ -48,7 +56,7 @@ export class Core {
 					layouts: this.config.layouts,
 					partials: this.config.partials,
 					helpers: this.config.helpers,
-				}),
+				})
 			)
 			.pipe(inky())
 			.pipe(gulp.dest(this.config.dist));
@@ -66,17 +74,19 @@ export class Core {
 			.src(this.config.scss)
 			.pipe(this.$.if(!this.production, this.$.sourcemaps.init()))
 			.pipe(
-				dartSass.sync({
-					includePaths: ['node_modules/foundation-emails/scss'],
-				}).on('error', dartSass.logError),
+				dartSass
+					.sync({
+						includePaths: ['node_modules/foundation-emails/scss'],
+					})
+					.on('error', dartSass.logError)
 			)
 			.pipe(
 				this.$.if(
 					this.production,
 					this.$.uncss({
 						html: [`${this.config.dist}/**/*.html`],
-					}),
-				),
+					})
+				)
 			)
 			.pipe(this.$.if(!this.production, this.$.sourcemaps.write()))
 			.pipe(gulp.dest(`${this.config.dist}/css`));
@@ -93,7 +103,12 @@ export class Core {
 	inline() {
 		return gulp
 			.src(`${this.config.dist}/**/*.html`)
-			.pipe(this.$.if(this.production, this.inliner(`${this.config.dist}/css/app.css`)))
+			.pipe(
+				this.$.if(
+					this.production,
+					this.inliner(`${this.config.dist}/css/app.css`)
+				)
+			)
 			.pipe(gulp.dest(this.config.dist));
 	}
 
@@ -107,23 +122,37 @@ export class Core {
 
 	// Watch for file changes
 	watch() {
-		gulp.watch('src/pages/**/*.html').on('all', gulp.series(this.pages.bind(this), this.inline.bind(this), browser.reload));
-		gulp
-			.watch(['src/layouts/**/*', 'src/partials/**/*'])
-			.on('all', gulp.series(this.resetPages.bind(this), this.pages.bind(this), this.inline.bind(this), browser.reload));
-		gulp
-			.watch(['../scss/**/*.scss', 'src/assets/scss/**/*.scss'])
-			.on(
-				'all',
-				gulp.series(
-					this.resetPages.bind(this),
-					this.sass.bind(this),
-					this.pages.bind(this),
-					this.inline.bind(this),
-					browser.reload,
-				),
-			);
-		gulp.watch('src/assets/img/**/*').on('all', gulp.series(this.images.bind(this), browser.reload));
+		gulp.watch('src/pages/**/*.html').on(
+			'all',
+			gulp.series(
+				this.pages.bind(this),
+				this.inline.bind(this),
+				browser.reload
+			)
+		);
+		gulp.watch(['src/layouts/**/*', 'src/partials/**/*']).on(
+			'all',
+			gulp.series(
+				this.resetPages.bind(this),
+				this.pages.bind(this),
+				this.inline.bind(this),
+				browser.reload
+			)
+		);
+		gulp.watch(['../scss/**/*.scss', 'src/assets/scss/**/*.scss']).on(
+			'all',
+			gulp.series(
+				this.resetPages.bind(this),
+				this.sass.bind(this),
+				this.pages.bind(this),
+				this.inline.bind(this),
+				browser.reload
+			)
+		);
+		gulp.watch('src/assets/img/**/*').on(
+			'all',
+			gulp.series(this.images.bind(this), browser.reload)
+		);
 	}
 
 	// Inlines CSS into HTML, adds media query CSS into the <style> tag of the email, and compresses the HTML
@@ -139,7 +168,11 @@ export class Core {
 				removeLinkTags: false,
 			})
 			.pipe(this.$.replace, '<!-- <style> -->', `<style>${mqCss}</style>`)
-			.pipe(this.$.replace, '<link rel="stylesheet" type="text/css" href="css/app.css">', '')
+			.pipe(
+				this.$.replace,
+				'<link rel="stylesheet" type="text/css" href="css/app.css">',
+				''
+			)
 			.pipe(this.$.htmlmin, {
 				collapseWhitespace: true,
 				minifyCSS: true,
