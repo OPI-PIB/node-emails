@@ -3,7 +3,7 @@ import fs from 'fs';
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
 import browser from 'browser-sync';
-import { rimraf } from 'rimraf';
+import { rimrafSync } from 'rimraf';
 import panini from 'panini';
 import lazypipe from 'lazypipe';
 import inky from 'inky';
@@ -41,10 +41,11 @@ export class Core {
 
 	// Delete the "dist" folder
 	// This happens every time a build starts
-	clean(done: (error: Error | null | undefined) => void) {
-		rimraf(this.config.dist)
-			.then(() => done(null))
-			.catch((e: Error) => done(e));
+	clean(done: () => void) {
+		const success = rimrafSync(this.config.dist);
+		if (success) {
+			done();
+		}
 	}
 
 	// Compile layouts, pages, and partials into flat HTML files
